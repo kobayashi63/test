@@ -1,21 +1,20 @@
 
 import './App.css';
 import Toppage from './Component/Toppage';
-import { Link, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Router from './Router';
+import Menu from './Menu';
 
 const MainContents=()=>{
     return(
+    <>
         <div class="page" align="right">
-        <Router></Router>
-
-        <div class="menu" aligm="left">
-            <Link to="/home" class="link-box">Home</Link>  <br />
-            <Link to="/about" class="link-box">About</Link>  <br />
-            <Link to="/counter" class="link-box">Counter</Link> <br />
-            <Link to="/picture" class="link-box">Picture</Link> 
+            <Router/>
         </div>
-    </div>
+        <div class="menu" aligm="left">
+            <Menu />
+        </div>
+    </>
     )
 }
 export default function App(){
