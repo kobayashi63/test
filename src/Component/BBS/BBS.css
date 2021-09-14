@@ -1,0 +1,10 @@
+.name-box{
+  font-size: 15px;
+  font-family:unset
+}
+
+.comment-box{
+    font-size: 20px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding: 0px 0px 15px 15px;
+}

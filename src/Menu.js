@@ -91,6 +91,7 @@ export default function Menu(){
             <MenuLink to="/about" text="About" />
             <MenuLink to="/counter" text="Counter" />
             <MenuLink to="/picture" text="Picture" />
+            <MenuLink to="/bbs" text="BBS" />
             <Push2 />
         </div>
     )
