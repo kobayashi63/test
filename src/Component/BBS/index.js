@@ -1,3 +1,4 @@
+import { emphasize } from '@material-ui/core';
 import React, { Component } from 'react';
 import './BBS.css';
 
@@ -9,7 +10,8 @@ class BBS extends Component {
             lists:[],
             user: "",
             comments: "",
-            notation: ""
+            notation1: "",
+            notation2: ""
         }
     }
     render(){
@@ -25,12 +27,18 @@ class BBS extends Component {
                     </p>
                     </p>
                     <button onClick={this.handleSubmit}>Send</button>
-                    {this.state.notation}
-                    
+                    {this.state.notation1}
+                    {this.state.notation2}
+
                     {this.state.lists.map((l)=>(
                         <div key={l.user}>
-                            <div class="name-box">
+                            <div>
+                                <p class="name-box">
                                {l.user}:
+                               </p>
+                               <p style={{fontSize: 10}}>
+                                   {this.state.date}
+                               </p>
                             </div>
                             <div class="comment-box">
                                {l.comments}
@@ -52,12 +60,18 @@ class BBS extends Component {
             if ( this.state.user =="" ) {
               
                 this.setState({
-                    notation: "!Please write your name!"
+                    notation1: "!Please write your name!"
                 });
         
-            } else {
+            } else if (this.state.comments =="") {
+                this.setState({
+                    notation2: "!Please write comments!"
+                });
+            } else 
+            {
             
         this.setState({
+            date: new Date().toLocaleString(),
             lists: [
                 ...this.state.lists,
                 {
