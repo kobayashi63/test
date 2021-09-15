@@ -4,7 +4,12 @@
 }
 
 .comment-box{
-    font-size: 20px;
+    font-size: 15px;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    padding: 0px 0px 15px 15px;
+    padding: 5px 0px 0px 15px;
+}
+
+.Subjext{
+    font-size: 20px;
+    margin-bottom: -10px;
 }

@@ -4,7 +4,7 @@ import About from './Component/About';
 import Counter from './Component/Counter';
 import Toppage from './Component/Toppage';
 import Picture from './Component/Picture';
-import BBS from './Component/BBS';
+import BBS from './BBS';
 
 export default function Router(){
     return(

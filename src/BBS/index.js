@@ -1,6 +1,7 @@
 import { emphasize } from '@material-ui/core';
 import React, { Component } from 'react';
 import './BBS.css';
+import styled from 'styled-components';
 
 class BBS extends Component {
 
@@ -18,12 +19,13 @@ class BBS extends Component {
         return(
             <div classname="BBS" align="left">
                 <p>BBS</p>
-                    <p>Name
-                    <input type="text" name="user" onChange={this.handleChange} value={this.state.user} />
+                    <p style={{display: 'flex'}}>
+                    <p class="Subject ">Name</p>
+                    <p><input type="text" name="user" onChange={this.handleChange} value={this.state.user}/></p>
                     </p>
-                    <p>Comments
+                    <p class="Subject" style={{marginTop: -30}}>Comments
                     <p>
-                    <textarea type="text" name="comments" style={{width: 200,height: 60}} onChange={this.handleChange} value={this.state.comments} />
+                    <textarea type="text" name="comments" style={{resize: 'none', width: 200,height: 60, marginTop: -10, marginBottom: -10}} onChange={this.handleChange} value={this.state.comments} />
                     </p>
                     </p>
                     <button onClick={this.handleSubmit}>Send</button>
@@ -31,14 +33,14 @@ class BBS extends Component {
                     {this.state.notation2}
 
                     {this.state.lists.map((l)=>(
-                        <div key={l.user}>
-                            <div>
-                                <p class="name-box">
-                               {l.user}:
-                               </p>
-                               <p style={{fontSize: 10}}>
-                                   {this.state.date}
-                               </p>
+                        <div key={l.user} style={{marginTop: 10}}>
+                            <div style={{display: 'flex'}}>
+                               <div class="font-size: 5px"> {/* ? hanei sarenai */}
+                                  {this.state.date}: 
+                               </div>
+                               <div class="name-box">
+                                   {l.user}
+                               </div>
                             </div>
                             <div class="comment-box">
                                {l.comments}
@@ -87,6 +89,8 @@ class BBS extends Component {
 
     }
 }
+
+
 
 
 
