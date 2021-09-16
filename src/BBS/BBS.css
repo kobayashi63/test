@@ -13,3 +13,8 @@
     font-size: 20px;
     margin-bottom: -10px;
 }
+
+.BBS-box{
+  width: 30%;
+  overflow-wrap: break-word;
+}

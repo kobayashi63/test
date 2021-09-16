@@ -21,7 +21,7 @@ class BBS extends Component {
                 <p>BBS</p>
                     <p style={{display: 'flex'}}>
                     <p class="Subject ">Name</p>
-                    <p><input type="text" name="user" onChange={this.handleChange} value={this.state.user}/></p>
+                    <p><input type="text" name="user" maxlength="10" placeholder="10文字以内" onChange={this.handleChange} value={this.state.user}/></p>
                     </p>
                     <p class="Subject" style={{marginTop: -30}}>Comments
                     <p>
@@ -33,6 +33,7 @@ class BBS extends Component {
                     {this.state.notation2}
 
                     {this.state.lists.map((l)=>(
+                       <div class="BBS-box"> 
                         <div key={l.user} style={{marginTop: 10}}>
                             <div style={{display: 'flex'}}>
                                <div class="font-size: 5px"> {/* ? hanei sarenai */}
@@ -46,10 +47,13 @@ class BBS extends Component {
                                {l.comments}
                             </div>
                         </div>
+                       </div> 
                     ))}
             </div>
         );
     }
+
+
 
     handleChange = (event) =>{
         this.setState({[event.target.name]: event.target.value})
