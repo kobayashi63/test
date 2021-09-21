@@ -1,7 +1,47 @@
 import { emphasize } from '@material-ui/core';
-import React, { Component } from 'react';
+import React, { Component, useState} from 'react';
 import './BBS.css';
 import styled from 'styled-components';
+import { ReactDOM } from 'react';
+import { PersonOutlineSharp } from '@material-ui/icons';
+
+
+// function Text({text, maxLine}){
+//         const[hidden, setHidden] = useState(true)
+
+//         if(text <= maxLine){
+//             return(
+//              <span>{text}</span>
+//             );
+//         }
+//         return(
+//             <span>
+//                 {hidden ? '${text.substr(0, maxLine).trim()} ...' : text}
+//                 {hidden ? (
+//                     <a onClick={()=> setHidden(false)}>read more</a>
+//                         ):(
+//                     <a onClick={()=> setHidden(true)}>read less</a>
+//                         )
+//                     }
+//             </span>
+//         );
+// }
+
+
+
+
+
+const CommentBox =(props)=>{
+    if(props.text)
+    return(
+        <div>
+            {props.text}   
+            <a onClick={() => this.setState(false)}>{props.expand}</a>
+        </div>
+    )
+}
+
+
 
 class BBS extends Component {
 
@@ -15,6 +55,7 @@ class BBS extends Component {
             notation2: ""
         }
     }
+
     render(){
         return(
             <div classname="BBS" align="left">
@@ -44,7 +85,8 @@ class BBS extends Component {
                                </div>
                             </div>
                             <div class="comment-box">
-                               {l.comments}
+                               <CommentBox text={l.comments}/>
+                               
                             </div>
                         </div>
                        </div> 
@@ -52,6 +94,7 @@ class BBS extends Component {
             </div>
         );
     }
+
 
 
 
@@ -73,9 +116,9 @@ class BBS extends Component {
                 this.setState({
                     notation2: "!Please write comments!"
                 });
-            } else 
+            } else
+
             {
-            
         this.setState({
             date: new Date().toLocaleString(),
             lists: [
@@ -85,13 +128,16 @@ class BBS extends Component {
                     comments: this.state.comments
                 }
             ],
-            user:"",
+            // user:"",
             comments: ""
         });
-    }
+            }
+    
 })()}
 
     }
+
+    
 }
 
 

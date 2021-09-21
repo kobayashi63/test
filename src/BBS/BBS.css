@@ -7,6 +7,12 @@
     font-size: 15px;
     font-family:Georgia, 'Times New Roman', Times, serif;
     padding: 5px 0px 0px 15px;
+    white-space: pre-wrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .Subjext{
