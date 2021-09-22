@@ -1,9 +1,11 @@
 import { emphasize } from '@material-ui/core';
 import React, { Component, useState} from 'react';
 import './BBS.css';
+
 import styled from 'styled-components';
 import { ReactDOM } from 'react';
 import { PersonOutlineSharp } from '@material-ui/icons';
+import { render } from '@testing-library/react';
 
 
 // function Text({text, maxLine}){
@@ -30,19 +32,50 @@ import { PersonOutlineSharp } from '@material-ui/icons';
 
 
 
-
 const CommentBox =(props)=>{
-    if(props.text)
+
+
+    const textContents = document.querySelector(".comment-box");
+    const textHeight = textContents.clientHeight;
+    let element = window.getComputedStyle(textContents);
+    let lineHeight = element.getPropertyValue('line-height');
+    lineHeight = lineHeight.replace(/[^-/d/.]/g, '');
+
+
+        if(textHeight > lineHeight*3){
+            <Hidden />
+        }else{
+            <div class="comment-box">
+            {props.text}
+            </div>
+        }
+        
+        
+        const Hidden =()=>{
+            const [hidden, setHidden] = useState(true);
+            {
+                hidden?
+                    <div class="comment-box omit">
+                    {props.text}
+                    <a onClick={()=>setHidden(!hidden)}>read more</a>
+                    </div>
+                    :
+                    <div class="comment-box">
+                    {props.text}
+                    <a onClick={()=>setHidden(!hidden)}>read less</a>
+                    </div>
+            }
+        }
+    
+
     return(
-        <div>
+        <div class="comment-box">
             {props.text}   
-            <a onClick={() => this.setState(false)}>{props.expand}</a>
         </div>
     )
 }
 
-
-
+// 
 class BBS extends Component {
 
     constructor(props){
@@ -57,6 +90,7 @@ class BBS extends Component {
     }
 
     render(){
+        
         return(
             <div classname="BBS" align="left">
                 <p>BBS</p>
@@ -84,7 +118,7 @@ class BBS extends Component {
                                    {l.user}
                                </div>
                             </div>
-                            <div class="comment-box">
+                            <div>
                                <CommentBox text={l.comments}/>
                                
                             </div>
@@ -97,6 +131,7 @@ class BBS extends Component {
 
 
 
+    textContents =()=> {document.querySelector('.comment-box')}
 
     handleChange = (event) =>{
         this.setState({[event.target.name]: event.target.value})
@@ -131,6 +166,7 @@ class BBS extends Component {
             // user:"",
             comments: ""
         });
+       
             }
     
 })()}
