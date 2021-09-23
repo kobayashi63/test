@@ -1,25 +1,22 @@
-import { emphasize } from '@material-ui/core';
+
 import React, { Component, useState, useRef, useEffect} from 'react';
 import './BBS.css';
-
-import styled from 'styled-components';
-import { ReactDOM } from 'react';
-import { PersonOutlineSharp, TextFormatOutlined } from '@material-ui/icons';
-import { render } from '@testing-library/react';
 
 
 
 const Text = (props) => {
     const elm = useRef(null);
-     let textHeight
+    let textHeight 
     useEffect(() => {
       console.log(elm.current);
       console.log(JSON.stringify(elm.current.getBoundingClientRect().height));
-      textHeight = elm.current.getBoundingClientRect().height;
+      textHeight = JSON.stringify(elm.current.getBoundingClientRect().height);
     }, []);
+
+
     
     if(textHeight > 50){
-        return   <Hidden text={props.text} ref={elm}/>
+        return <Hidden text={props.text} ref={elm}/>
     }else{
         return(
         <div ref={elm} class="comment-box">
@@ -107,12 +104,12 @@ class BBS extends Component {
                     {this.state.lists.map((l)=>(
                        <div class="BBS-box"> 
                         <div key={l.user} style={{marginTop: 10}}>
-                            <div style={{display: 'flex'}}>
+                            <div style={{display: 'flex', alignItems: 'center'}}>
                                <h1> {/*class="name-box"> */}
                                    {l.user} :
                                </h1>
-                               <div style={{fontSize: "5px"}}> {/* ? hanei sarenai */}
-                                  {this.state.date}
+                               <div style={{fontSize: "10px"}}> {/* ? hanei sarenai */}
+                                  {l.date}
                                </div>
                             </div>
                             <div>
@@ -128,7 +125,7 @@ class BBS extends Component {
 
 
 
-    textContents =()=> {document.querySelector('.comment-box')}
+    // textContents =()=> {document.querySelector('.comment-box')}
 
     handleChange = (event) =>{
         this.setState({[event.target.name]: event.target.value})
