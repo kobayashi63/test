@@ -1,79 +1,76 @@
 import { emphasize } from '@material-ui/core';
-import React, { Component, useState} from 'react';
+import React, { Component, useState, useRef, useEffect} from 'react';
 import './BBS.css';
 
 import styled from 'styled-components';
 import { ReactDOM } from 'react';
-import { PersonOutlineSharp } from '@material-ui/icons';
+import { PersonOutlineSharp, TextFormatOutlined } from '@material-ui/icons';
 import { render } from '@testing-library/react';
 
 
-// function Text({text, maxLine}){
-//         const[hidden, setHidden] = useState(true)
 
-//         if(text <= maxLine){
-//             return(
-//              <span>{text}</span>
-//             );
-//         }
-//         return(
-//             <span>
-//                 {hidden ? '${text.substr(0, maxLine).trim()} ...' : text}
-//                 {hidden ? (
-//                     <a onClick={()=> setHidden(false)}>read more</a>
-//                         ):(
-//                     <a onClick={()=> setHidden(true)}>read less</a>
-//                         )
-//                     }
-//             </span>
-//         );
-// }
+const Text = (props) => {
+    const elm = useRef(null);
+     let textHeight
+    useEffect(() => {
+      console.log(elm.current);
+      console.log(JSON.stringify(elm.current.getBoundingClientRect().height));
+      textHeight = elm.current.getBoundingClientRect().height;
+    }, []);
+    
+    if(textHeight > 50){
+        return   <Hidden text={props.text} ref={elm}/>
+    }else{
+        return(
+        <div ref={elm} class="comment-box">
+        {props.text}
+        </div>
+        )
+    };
+        
+}
 
-
-
-
-const CommentBox =(props)=>{
-
-
-    const textContents = document.querySelector(".comment-box");
-    const textHeight = textContents.clientHeight;
-    let element = window.getComputedStyle(textContents);
-    let lineHeight = element.getPropertyValue('line-height');
-    lineHeight = lineHeight.replace(/[^-/d/.]/g, '');
-
-
-        if(textHeight > lineHeight*3){
-            <Hidden />
-        }else{
+const Hidden =(props)=>{
+    const [hidden, setHidden] = useState(true);
+    return(
+        <div>
+        {hidden?
+            <div class="comment-box omit">
+            {props.text}
+            <a onClick={()=>setHidden(!hidden)}>read more</a>
+            </div>
+            :
             <div class="comment-box">
             {props.text}
+            <a onClick={()=>setHidden(!hidden)}>read less</a>
             </div>
         }
-        
-        
-        const Hidden =()=>{
-            const [hidden, setHidden] = useState(true);
-            {
-                hidden?
-                    <div class="comment-box omit">
-                    {props.text}
-                    <a onClick={()=>setHidden(!hidden)}>read more</a>
-                    </div>
-                    :
-                    <div class="comment-box">
-                    {props.text}
-                    <a onClick={()=>setHidden(!hidden)}>read less</a>
-                    </div>
-            }
-        }
-    
-
-    return(
-        <div class="comment-box">
-            {props.text}   
         </div>
     )
 }
+// const textContents = document.querySelector(".comment-box");
+    // const textHeight = textContents.clientHeight;
+    // let element = window.getComputedStyle(textContents);
+    // let lineHeight = element.getPropertyValue('line-height');
+    // lineHeight = lineHeight.replace(/[^-/d/.]/g, '');
+
+
+        
+        
+        
+    
+    
+
+
+
+
+// const CommentBox =(props)=>{
+//     return(
+//         <div class="comment-box">
+//             {props.text}   
+//         </div>
+//     )
+// }
 
 // 
 class BBS extends Component {
@@ -111,15 +108,15 @@ class BBS extends Component {
                        <div class="BBS-box"> 
                         <div key={l.user} style={{marginTop: 10}}>
                             <div style={{display: 'flex'}}>
-                               <div class="font-size: 5px"> {/* ? hanei sarenai */}
-                                  {this.state.date}: 
-                               </div>
-                               <div class="name-box">
-                                   {l.user}
+                               <h1> {/*class="name-box"> */}
+                                   {l.user} :
+                               </h1>
+                               <div style={{fontSize: "5px"}}> {/* ? hanei sarenai */}
+                                  {this.state.date}
                                </div>
                             </div>
                             <div>
-                               <CommentBox text={l.comments}/>
+                               <Text text={l.comments}/>
                                
                             </div>
                         </div>
@@ -140,6 +137,7 @@ class BBS extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
+    
         {(() => {
             if ( this.state.user =="" ) {
               
@@ -163,11 +161,18 @@ class BBS extends Component {
                     comments: this.state.comments
                 }
             ],
-            // user:"",
-            comments: ""
+            comments: "",
+            
         });
        
+    
             }
+    
+
+    
+    
+
+
     
 })()}
 
