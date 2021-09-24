@@ -52,24 +52,48 @@ const Hidden =(props)=>{
     // lineHeight = lineHeight.replace(/[^-/d/.]/g, '');
 
 
-        
-        
-        
-    
-    
 
-
-
-
-// const CommentBox =(props)=>{
+// const Form =(props)=>{
 //     return(
-//         <div class="comment-box">
-//             {props.text}   
-//         </div>
+//             <>
+//                    <p>BBS</p>
+//                     <p style={{display: 'flex'}}>
+//                     <p class="Subject ">Name</p>
+//                     <p><input type="text" name={props.nameInput} maxlength="10" placeholder="10文字以内" onChange={props.Change} value={props.value-user}/></p>
+//                     </p>
+//                     <p class="Subject" style={{marginTop: -30}}>Comments
+//                     <p>
+//                     <textarea type="text" name={props.nameTextarea} style={{resize: 'none', width: 200,height: 60, marginTop: -10, marginBottom: -10}} onChange={props.onChange} value={props.value-comments} />
+//                     </p>
+//                     </p>
+//                     <button onClick={props.Click}>Send</button>
+//                     {this.state.notation1}
+//                     {this.state.notation2}
+//             </>        
 //     )
-// }
+// }    
 
-// 
+
+const CommentBox =(props)=>{
+    return(
+        <div  style={{marginTop: 10}}>
+                            <div style={{display: 'flex', alignItems: 'center', marginBottom: -15}}>
+                                <p> {props.number} </p>
+                               <h1> 
+                                   {props.user} :
+                               </h1>
+                               <div style={{fontSize: "10px"}}> 
+                                  {props.date}
+                               </div>
+                            </div>
+                            <div>
+                               <Text text={props.comments} />   
+                            </div>
+                        </div>
+    )
+}
+
+
 class BBS extends Component {
 
     constructor(props){
@@ -88,7 +112,8 @@ class BBS extends Component {
         
         return(
             <div classname="BBS" align="left">
-                <p>BBS</p>
+                    {/* <Form Change={this.handleChange} Click={this.hundleSubmit} value-user={this.state.user} value-comments={this.state.comments} nameInput={"user"} nameTextarea="comments"/> */}
+                    <p>BBS</p>
                     <p style={{display: 'flex'}}>
                     <p class="Subject ">Name</p>
                     <p><input type="text" name="user" maxlength="10" placeholder="10文字以内" onChange={this.handleChange} value={this.state.user}/></p>
@@ -104,20 +129,10 @@ class BBS extends Component {
 
                     {this.state.lists.map((l)=>(
                        <div class="BBS-box"> 
-                        <div key={l.user} style={{marginTop: 10}}>
-                            <div style={{display: 'flex', alignItems: 'center', marginBottom: -15}}>
-                                <p> {l.number} </p>
-                               <h1> {/*class="name-box"> */}
-                                   {l.user} :
-                               </h1>
-                               <div style={{fontSize: "10px"}}> {/* ? hanei sarenai */}
-                                  {this.state.date}
-                               </div>
-                            </div>
-                            <div>
-                               <Text text={l.comments} style={{marginTop: 0}}/>   
-                            </div>
-                        </div>
+                         <div  style={{marginTop: 10}}>
+                            <CommentBox number={l.number} user={l.user} date={this.props.date} comments={l.comments}/>
+                        </div> 
+
                        </div> 
                     ))}
             </div>
