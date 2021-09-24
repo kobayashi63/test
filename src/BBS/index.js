@@ -79,7 +79,8 @@ class BBS extends Component {
             user: "",
             comments: "",
             notation1: "",
-            notation2: ""
+            notation2: "",
+            number: 0
         }
     }
 
@@ -104,17 +105,17 @@ class BBS extends Component {
                     {this.state.lists.map((l)=>(
                        <div class="BBS-box"> 
                         <div key={l.user} style={{marginTop: 10}}>
-                            <div style={{display: 'flex', alignItems: 'center'}}>
+                            <div style={{display: 'flex', alignItems: 'center', marginBottom: -15}}>
+                                <p> {l.number} </p>
                                <h1> {/*class="name-box"> */}
                                    {l.user} :
                                </h1>
                                <div style={{fontSize: "10px"}}> {/* ? hanei sarenai */}
-                                  {l.date}
+                                  {this.state.date}
                                </div>
                             </div>
                             <div>
-                               <Text text={l.comments}/>
-                               
+                               <Text text={l.comments} style={{marginTop: 0}}/>   
                             </div>
                         </div>
                        </div> 
@@ -155,11 +156,12 @@ class BBS extends Component {
                 ...this.state.lists,
                 {
                     user: this.state.user,
-                    comments: this.state.comments
+                    comments: this.state.comments,
+                    number: this.state.number +1
                 }
             ],
             comments: "",
-            
+            number: this.state.number +1
         });
        
     
