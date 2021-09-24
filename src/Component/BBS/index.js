@@ -13,8 +13,6 @@ const Text = (props) => {
       textHeight = JSON.stringify(elm.current.getBoundingClientRect().height);
     }, []);
 
-
-    
     if(textHeight > 50){
         return <Hidden text={props.text} ref={elm}/>
     }else{
@@ -94,17 +92,22 @@ const CommentBox =(props)=>{
 }
 
 
+
+
+
+
 class BBS extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            lists:[],
+            commElem: [],
             user: "",
             comments: "",
             notation1: "",
             notation2: "",
-            number: 0
+            number: 0,
+            commList: []
         }
     }
 
@@ -127,7 +130,7 @@ class BBS extends Component {
                     {this.state.notation1}
                     {this.state.notation2}
 
-                    {this.state.lists.map((l)=>(
+                    {this.state.commElem.map((l)=>(
                        <div class="BBS-box"> 
                          <div  style={{marginTop: 10}}>
                             <CommentBox number={l.number} user={l.user} date={this.props.date} comments={l.comments}/>
@@ -163,21 +166,21 @@ class BBS extends Component {
                     notation2: "!Please write comments!"
                 });
             } else
-
             {
-        this.setState({
-            date: new Date().toLocaleString(),
-            lists: [
-                ...this.state.lists,
-                {
-                    user: this.state.user,
-                    comments: this.state.comments,
-                    number: this.state.number +1
-                }
-            ],
-            comments: "",
-            number: this.state.number +1
-        });
+                this.setState({
+                    date: new Date().toLocaleString(),
+                    commElem: [
+                      ...this.state.commElem,
+                      {
+                       user: this.state.user,
+                       comments: this.state.comments,
+                       number: this.state.number +1
+                      }
+                    ],
+                   
+                comments: "",
+                number: this.state.number +1
+                });
        
     
             }

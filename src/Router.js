@@ -4,7 +4,8 @@ import About from './Component/About';
 import Counter from './Component/Counter';
 import Toppage from './Component/Toppage';
 import Picture from './Component/Picture';
-import BBS from './BBS';
+import BBS from './Component/BBS';
+import TestPage from './Component/TestPage';
 
 export default function Router(){
     return(
@@ -16,6 +17,7 @@ export default function Router(){
                 <Route exact path="/counter" component={Counter} />
                 <Route exact path="/picture" component={Picture} />
                 <Route exact path="/bbs" component={BBS} />
+                <Route exact path="/testpage" component={TestPage} />
             </Switch>
         </div>
     )
