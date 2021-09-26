@@ -1,12 +1,12 @@
 import { Telegram } from '@material-ui/icons';
 import React, { Component, useState, useRef, useEffect} from 'react';
+import {Link} from'react-router-dom';
 
 function Todo(){
 
 const [items, setItems] = useState([{tag: 'a', memo: 'cat1'}, {tag: 'b', memo: 'cat2'}]);
-
 const handleAdd = (tag, memo) =>{
-  setItems([...items, {tag, memo}]);
+  setItems([...items, {tag, memo}])
 } 
 return(
   <div>
@@ -23,18 +23,44 @@ return(
 )
 }
 
+
+// const PageNumber=(prop)=>{
+//   const [number,setNumber] = useState(1);
+//   if(prop.num%10==0){
+//     return setNumber({number: +1});
+//   }else{
+//     ;
+//   }
+// }
+
+// const Pagenation =(props)=>{
+//   return(
+//       <div >
+//           <p> <Link to={props.prev}>prev</Link> </p>
+//           <p> <Link to={props.next}>next</Link> </p>
+//       </div>
+//   )
+// }
+
+
 function TodoItem({item}){
   return(
-    <p>
-    {item.tag}  
-    {item.memo}
-    </p>
+    <div>
+      <p>
+        {item.tag} :
+        {item.memo}
+      </p>
+       
+    </div>
   );
 }
 
 
+
+
 function Input({onAdd}){
   
+  const [page, setPage] = useState(1);
   const [memo, setMemo] = useState('');
   const [tag, setTag] = useState('');
 
@@ -45,7 +71,7 @@ function Input({onAdd}){
     e.preventDefault();
     onAdd(tag, memo);
     setTag('');
-    setMemo('');   
+    setMemo('');  
   }
   
   return(
@@ -62,7 +88,7 @@ function Input({onAdd}){
 export default function TestPage(){
     return (
       <div align="center">
-        <Todo /> 
+        <Todo />    
       </div>  
   );
 }
