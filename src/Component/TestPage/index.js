@@ -1,9 +1,12 @@
+import { Telegram } from '@material-ui/icons';
 import React, { Component, useState, useRef, useEffect} from 'react';
 
 function Todo(){
-const [items, setItems] = useState([{text: 'cat1'}, {text: 'cat2'}]);
-const handleAdd = text =>{
-  setItems([...items, {text}]);
+
+const [items, setItems] = useState([{tag: 'a', memo: 'cat1'}, {tag: 'b', memo: 'cat2'}]);
+
+const handleAdd = (tag, memo) =>{
+  setItems([...items, {tag, memo}]);
 } 
 return(
   <div>
@@ -23,23 +26,32 @@ return(
 function TodoItem({item}){
   return(
     <p>
-    {item.text}
+    {item.tag}  
+    {item.memo}
     </p>
   );
 }
 
 
 function Input({onAdd}){
-  const [text,setText] = useState('');
-  const handleChange = e => setText(e.target.value);
+  
+  const [memo, setMemo] = useState('');
+  const [tag, setTag] = useState('');
+
+  const handleChangeT= e => setTag(e.target.value);
+  const handleChangeM= e => setMemo(e.target.value);
+
   const handleClick = e => {
-    onAdd(text);
-    setText('');
+    e.preventDefault();
+    onAdd(tag, memo);
+    setTag('');
+    setMemo('');   
   }
   
   return(
     <div>
-      <input value={text} onChange={handleChange} />
+      <input value={tag} onChange={handleChangeT} placeholder="tag"/>
+      <input value={memo} onChange={handleChangeM} placeholder="memo"/>
       <button onClick={handleClick}>Add</button>
     </div>
   )
